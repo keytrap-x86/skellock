@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "extensionPath": "/lock.html"
+      }
+    },
+    "condition": {
+      "urlFilter": "*://*.skello.io/*",
+      "resourceTypes": [
+        "main_frame"
+      ]
+    }
+  }
+]

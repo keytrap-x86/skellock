@@ -1,0 +1,45 @@
+{
+  "name": "Skellock",
+  "description": "Permet de bloquer l'accès par un code PIN à un site web",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "favicon.png",
+    "48": "favicon.png",
+    "128": "favicon.png"
+  },
+  "action": {
+    "default_title": "Skellock"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "tabs",
+    "declarativeNetRequest"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "host_permissions": [
+    "*://*.skello.io/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "lock.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
