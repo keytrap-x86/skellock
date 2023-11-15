@@ -1,3 +1,12 @@
+document
+  .getElementById("passwordInput")
+  .addEventListener("keypress", function (e) {
+    // Si la touche pressée est "Entrée", on clique sur le bouton
+    if (e.key === "Enter") {
+      document.getElementById("submitButton").click();
+    }
+  });
+
 document.getElementById("submitButton").addEventListener("click", function () {
   let userInput = document.getElementById("passwordInput").value;
   let expectedPassword = new Date()
