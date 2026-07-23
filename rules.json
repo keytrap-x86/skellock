@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "priority": 1,
+    "priority": 100,
     "action": {
       "type": "redirect",
       "redirect": {
@@ -9,7 +9,7 @@
       }
     },
     "condition": {
-      "urlFilter": "*://*.skello.io/*",
+      "urlFilter": "||skello.io^",
       "resourceTypes": [
         "main_frame"
       ]

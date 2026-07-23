@@ -1,97 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Accès protégé — Skellock</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="lock-shell">
+      <section class="lock-card" aria-labelledby="page-title">
+        <img
+          class="brand-icon"
+          src="icons/icon-48.png"
+          width="48"
+          height="48"
+          alt=""
+        />
+        <p class="eyebrow">Skellock</p>
+        <h1 id="page-title">Accès protégé</h1>
+        <p class="intro">
+          Saisissez le code d’accès pour continuer vers Skello.
+        </p>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Vérification de mot de passe</title>
-        <style>
-            body {
-                margin: 0;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #f7f7f7;
-                font-family: Arial, sans-serif;
-            }
+        <form id="unlockForm" novalidate>
+          <label for="passwordInput">Code d’accès</label>
+          <input
+            id="passwordInput"
+            name="accessCode"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            pattern="[0-9]{4}"
+            minlength="4"
+            maxlength="4"
+            required
+            autofocus
+            aria-describedby="formStatus accessNote"
+          />
+          <p id="formStatus" class="form-status" role="status" aria-live="polite">
+          </p>
+          <button id="submitButton" type="submit">Continuer</button>
+        </form>
 
-            .wrapper {
-                padding: 20px;
-                background-color: white;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 8px;
-                max-width: 300px;
-                width: 100%;
-                box-sizing: border-box;
-            }
+        <p id="accessNote" class="access-note">
+          L’accès est autorisé uniquement dans cet onglet, jusqu’à sa
+          fermeture. Cliquez sur l’icône Skellock pour reverrouiller
+          immédiatement.
+        </p>
+      </section>
 
-            h1 {
-                color: #333;
-                font-size: 24px;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-
-            .st-input__wrapper {
-                border: 1px solid #ddd;
-                margin: 12px 0;
-                width: 100%;
-                border-radius: 4px;
-                background: #fff;
-                color: #000;
-                position: relative;
-                padding: 5px 10px;
-                display: flex;
-                align-items: center;
-                box-sizing: border-box;
-                height: 50px;
-            }
-
-            .st-input {
-                width: 90%;
-                border: 0;
-                outline: 0;
-                background-color: #fff;
-                color: #000;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 30px;
-                padding-top: 3px;
-            }
-
-            button {
-                width: 100%;
-                height: 50px;
-                background-color: #eef4ff;
-                border: none;
-                border-radius: 4px;
-                color: #2b66fe;
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 21px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            button:hover {
-                background-color: #d9e6ff;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="wrapper">
-            <h1>Accès à Skello</h1>
-            <div class="st-input__wrapper">
-                <input id="passwordInput" placeholder="Mot de passe" tabindex="0" type="password" class="st-input">
-            </div>
-            <button id="submitButton">Valider</button>
-        </div>
-        <script src="script.js"></script>
-    </body>
-
+      <p class="disclaimer">
+        Extension indépendante, non affiliée à Skello.
+      </p>
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>
