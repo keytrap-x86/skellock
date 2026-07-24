@@ -1,0 +1,91 @@
+:root {
+  color: #171a3d;
+  background: #f5f7ff;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 320px;
+  margin: 0;
+  background:
+    radial-gradient(circle at 4% 0%, rgba(85, 178, 255, 0.2), transparent 12rem),
+    radial-gradient(circle at 100% 100%, rgba(53, 39, 237, 0.1), transparent 13rem),
+    #f5f7ff;
+}
+
+button {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 11px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.popup-shell {
+  padding: 18px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+header img {
+  border-radius: 11px;
+}
+
+header strong {
+  display: block;
+  font-size: 1rem;
+}
+
+header p {
+  margin: 3px 0 0;
+  color: #69748a;
+  font-size: 0.72rem;
+}
+
+.primary-button {
+  border: 0;
+  background: linear-gradient(135deg, #3527ed 0%, #287cff 100%);
+  color: #fff;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2718c7 0%, #1766e8 100%);
+}
+
+.secondary-button {
+  margin-top: 9px;
+  border: 1px solid #d3dae5;
+  background: #fff;
+  color: #344057;
+}
+
+.secondary-button:hover {
+  border-color: #9faeff;
+  color: #3527ed;
+}
+
+#feedback {
+  min-height: 17px;
+  margin: 10px 0 -4px;
+  color: #305ee8;
+  font-size: 0.7rem;
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 :root {
-  color: #172036;
-  background: #f4f7fb;
+  color: #171a3d;
+  background: #f5f7ff;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -16,9 +16,9 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at 15% 15%, rgba(59, 197, 176, 0.16), transparent 32rem),
-    radial-gradient(circle at 85% 85%, rgba(246, 196, 83, 0.18), transparent 30rem),
-    #f4f7fb;
+    radial-gradient(circle at 15% 15%, rgba(85, 178, 255, 0.2), transparent 32rem),
+    radial-gradient(circle at 85% 85%, rgba(53, 39, 237, 0.15), transparent 30rem),
+    #f5f7ff;
 }
 
 button,
@@ -40,12 +40,12 @@ input {
   width: min(420px, 100%);
   flex: none;
   padding: 36px;
-  border: 1px solid rgba(23, 32, 54, 0.08);
+  border: 1px solid rgba(53, 39, 237, 0.09);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.96);
   box-shadow:
-    0 24px 70px rgba(23, 32, 54, 0.12),
-    0 2px 8px rgba(23, 32, 54, 0.04);
+    0 24px 70px rgba(33, 30, 112, 0.15),
+    0 2px 8px rgba(30, 34, 82, 0.04);
 }
 
 .brand-icon {
@@ -56,7 +56,7 @@ input {
 
 .eyebrow {
   margin: 0 0 6px;
-  color: #217f72;
+  color: #3527ed;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -65,7 +65,7 @@ input {
 
 h1 {
   margin: 0;
-  color: #172036;
+  color: #171a3d;
   font-size: clamp(2rem, 8vw, 2.6rem);
   letter-spacing: -0.045em;
   line-height: 1.05;
@@ -94,7 +94,7 @@ input {
   border-radius: 12px;
   outline: none;
   background: #fff;
-  color: #172036;
+  color: #171a3d;
   font-size: 1.2rem;
   letter-spacing: 0.2em;
   transition:
@@ -103,8 +103,8 @@ input {
 }
 
 input:focus {
-  border-color: #278f80;
-  box-shadow: 0 0 0 4px rgba(39, 143, 128, 0.14);
+  border-color: #6478ff;
+  box-shadow: 0 0 0 4px rgba(53, 39, 237, 0.14);
 }
 
 input:disabled {
@@ -125,7 +125,7 @@ input:disabled {
 }
 
 .form-status[data-type="success"] {
-  color: #217f72;
+  color: #285fdc;
 }
 
 button {
@@ -133,7 +133,7 @@ button {
   height: 52px;
   border: 0;
   border-radius: 12px;
-  background: #172036;
+  background: linear-gradient(135deg, #3527ed 0%, #287cff 100%);
   color: #fff;
   cursor: pointer;
   font-weight: 800;
@@ -143,7 +143,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-  background: #263452;
+  background: linear-gradient(135deg, #2718c7 0%, #1766e8 100%);
 }
 
 button:active:not(:disabled) {
@@ -151,13 +151,17 @@ button:active:not(:disabled) {
 }
 
 button:focus-visible {
-  outline: 3px solid rgba(39, 143, 128, 0.35);
+  outline: 3px solid rgba(53, 39, 237, 0.32);
   outline-offset: 3px;
 }
 
 button:disabled {
   cursor: wait;
   opacity: 0.7;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 .access-note {

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Réglages — SiteLock</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+
+<body>
+  <main id="masterGate" class="master-gate" aria-labelledby="masterGateTitle">
+    <section class="master-card">
+      <img src="icons/icon-48.png" width="54" height="54" alt="" />
+      <p class="eyebrow">SiteLock</p>
+      <h1 id="masterGateTitle">Réglages verrouillés</h1>
+      <p id="masterGateIntro">
+        Saisissez le mot de passe maître pour administrer les sites protégés.
+      </p>
+      <form id="masterGateForm" novalidate>
+        <div class="field">
+          <label for="masterPasswordInput">Mot de passe maître</label>
+          <input id="masterPasswordInput" type="password" autocomplete="current-password" minlength="8" maxlength="128"
+            required autofocus />
+        </div>
+        <div id="masterConfirmField" class="field" hidden>
+          <label for="masterConfirmInput">Confirmer le mot de passe maître</label>
+          <input id="masterConfirmInput" type="password" autocomplete="new-password" minlength="8" maxlength="128" />
+        </div>
+        <p id="masterGateStatus" class="form-status" role="status" aria-live="polite"></p>
+        <button id="masterGateButton" class="button button-primary button-wide" type="submit">
+          Déverrouiller les réglages
+        </button>
+      </form>
+      <p class="master-note">
+        Le mot de passe maître protège uniquement l’administration de SiteLock.
+        Il est synchronisé sous forme de vérificateur cryptographique, jamais en clair.
+        Conservez-le précieusement&nbsp;: SiteLock ne peut pas le récupérer.
+      </p>
+    </section>
+  </main>
+
+  <div id="optionsApp" class="dashboard-layout" hidden>
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="#mainContent" aria-label="SiteLock, aller au contenu">
+        <img src="icons/icon-48.png" width="42" height="42" alt="" />
+        <span>SiteLock</span>
+      </a>
+      <nav aria-label="Navigation du tableau de bord">
+        <a class="nav-link nav-link-active" href="#addSite">
+          <span class="nav-icon" aria-hidden="true">＋</span>
+          Ajouter un site
+        </a>
+        <a class="nav-link" href="#sitesSection">
+          <span class="nav-icon" aria-hidden="true">✓</span>
+          Sites protégés
+        </a>
+        <a class="nav-link" href="#overview">
+          <span class="nav-icon" aria-hidden="true">◆</span>
+          Vue d’ensemble
+        </a>
+        <a class="nav-link" href="#diagnosticsSection">
+          <span class="nav-icon" aria-hidden="true">⋯</span>
+          Diagnostic
+        </a>
+        <a class="nav-link" href="#privacySection">
+          <span class="nav-icon" aria-hidden="true">i</span>
+          Confidentialité
+        </a>
+        <button id="lockOptionsButton" class="nav-link nav-button" type="button">
+          <span class="nav-icon" aria-hidden="true">⌁</span>
+          Verrouiller les réglages
+        </button>
+      </nav>
+      <div class="sidebar-sync">
+        <span class="sync-dot" aria-hidden="true"></span>
+        <div>
+          <strong>Synchronisation activée</strong>
+          <small>Les réglages seront aussi disponibles sur vos autres appareils</small>
+        </div>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div>
+          <p class="topbar-label">SiteLock</p>
+          <h1>Tableau de bord</h1>
+        </div>
+        <div class="topbar-actions">
+          <label class="search-field">
+            <span class="sr-only">Rechercher un site protégé</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="siteSearchInput" type="search" placeholder="Rechercher un site…" autocomplete="off" />
+          </label>
+          <button id="lockAllButton" class="button button-secondary" type="button">
+            Tout reverrouiller
+          </button>
+        </div>
+      </header>
+
+      <main id="mainContent" class="settings-shell">
+        <section id="addSite" class="panel form-panel" aria-labelledby="formTitle">
+          <div class="panel-heading">
+            <div>
+              <p class="step">Configuration</p>
+              <h2 id="formTitle">Protéger un site</h2>
+            </div>
+            <button id="cancelEditButton" class="text-button" type="button" hidden>
+              Annuler
+            </button>
+          </div>
+
+          <form id="siteForm" novalidate>
+            <div class="field">
+              <label for="siteInput">Adresse du site</label>
+              <input id="siteInput" name="site" type="text" inputmode="url" autocomplete="off" maxlength="2048"
+                placeholder="https://planning.exemple.com/equipe" aria-describedby="siteHelp sitePreview" required />
+              <p id="siteHelp" class="field-help">
+                Collez une adresse complète ou saisissez un domaine. Le chemin,
+                les paramètres et le port seront ignorés.
+              </p>
+              <p id="sitePreview" class="site-preview" aria-live="polite"></p>
+            </div>
+
+            <div class="form-options-grid">
+              <fieldset id="scopeFieldset">
+                <legend>Portée</legend>
+                <p id="scopeEditHelp" class="scope-edit-help" role="note" hidden>
+                  Pour modifier la portée, supprimez cette règle puis recréez-la
+                  avec la portée souhaitée.
+                </p>
+                <label class="choice-card">
+                  <input type="radio" name="scope" value="exact" checked />
+                  <span>
+                    <strong>Ce domaine uniquement</strong>
+                    <small id="exactScopeHelp">Protège uniquement le domaine saisi.</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="scope" value="subdomains" />
+                  <span>
+                    <strong>Domaine et sous-domaines</strong>
+                    <small id="wildcardScopeHelp">Protège aussi tous ses sous-domaines.</small>
+                  </span>
+                </label>
+              </fieldset>
+
+              <fieldset>
+                <legend>Type de code</legend>
+                <label class="choice-card">
+                  <input type="radio" name="passwordType" value="clock" checked />
+                  <span>
+                    <strong>Code dynamique</strong>
+                    <small>Basé sur l’heure et les minutes. Exemple : à 14 h 23, le code est 1423.</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="passwordType" value="reverse-clock" />
+                  <span>
+                    <strong>Code dynamique inversé</strong>
+                    <small>Minutes puis heure. Exemple : à 14 h 23, le code est 2314.</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="passwordType" value="custom" />
+                  <span>
+                    <strong>Mot de passe personnalisé</strong>
+                    <small>Choisissez un mot de passe propre à ce site.</small>
+                  </span>
+                </label>
+              </fieldset>
+            </div>
+
+            <div id="customPasswordFields" class="password-fields" hidden>
+              <div class="field">
+                <label for="passwordInput">Mot de passe</label>
+                <input id="passwordInput" type="password" autocomplete="new-password" minlength="8" maxlength="128"
+                  aria-describedby="passwordHelp" />
+                <p id="passwordHelp" class="field-help">
+                  8 caractères minimum. Il n’est jamais enregistré en clair.
+                </p>
+              </div>
+              <div class="field">
+                <label for="passwordConfirmInput">Confirmer le mot de passe</label>
+                <input id="passwordConfirmInput" type="password" autocomplete="new-password" minlength="8"
+                  maxlength="128" />
+              </div>
+            </div>
+
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+            <button id="saveButton" class="button button-primary button-wide" type="submit">
+              Ajouter et autoriser
+            </button>
+          </form>
+        </section>
+
+        <section id="overview" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Protection locale</p>
+            <h2>Protégez les sites sensibles.</h2>
+            <p>
+              Ajoutez une adresse, choisissez sa portée et son type de code.
+              SiteLock s’occupe du reste.
+            </p>
+          </div>
+          <div class="sync-pill" title="Lorsque la synchronisation du navigateur est activée">
+            <span class="sync-dot" aria-hidden="true"></span>
+            Réglages synchronisés
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Résumé de la protection">
+          <article class="stat-card stat-blue">
+            <span class="stat-icon" aria-hidden="true">◆</span>
+            <div>
+              <strong id="totalSitesStat">0</strong>
+              <p>Sites protégés</p>
+              <small id="totalSitesDetail">Aucune règle</small>
+            </div>
+          </article>
+          <article class="stat-card stat-green">
+            <span class="stat-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong id="activeSitesStat">0</strong>
+              <p>Actifs sur cet appareil</p>
+              <small id="activeSitesDetail">Aucun accès accordé</small>
+            </div>
+          </article>
+          <article class="stat-card stat-amber">
+            <span class="stat-icon" aria-hidden="true">↗</span>
+            <div>
+              <strong id="unlockedTabsStat">0</strong>
+              <p>Onglets déverrouillés</p>
+              <small id="unlockedTabsDetail">Tout est verrouillé</small>
+            </div>
+          </article>
+          <article class="stat-card stat-red">
+            <span class="stat-icon" aria-hidden="true">!</span>
+            <div>
+              <strong id="missingPermissionsStat">0</strong>
+              <p>À autoriser</p>
+              <small id="missingPermissionsDetail">Aucune action requise</small>
+            </div>
+          </article>
+          <article class="stat-card stat-purple">
+            <span class="stat-icon" aria-hidden="true">×</span>
+            <div>
+              <strong id="failedAttemptsStat">0</strong>
+              <p>Échecs récents</p>
+              <small id="failedAttemptsDetail">Aucun échec enregistré</small>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel activity-panel" aria-labelledby="historyTitle">
+          <div class="activity-heading">
+            <div>
+              <p class="step">Activité locale</p>
+              <h2 id="historyTitle">Activité récente</h2>
+            </div>
+            <button id="clearHistoryButton" class="text-button" type="button" hidden>
+              Effacer l’historique
+            </button>
+          </div>
+          <p id="historyEmptyState" class="activity-empty">
+            Aucune tentative enregistrée sur cet appareil.
+          </p>
+          <ul id="historyList" class="history-list"></ul>
+        </section>
+
+        <section id="welcomeBanner" class="notice notice-welcome" hidden>
+          <div>
+            <strong>Bienvenue dans SiteLock</strong>
+            <p>Ajoutez votre premier site pour activer sa protection.</p>
+          </div>
+        </section>
+
+        <section id="activationBanner" class="notice notice-action" hidden>
+          <div>
+            <strong>Activez SiteLock sur cet appareil</strong>
+            <p id="activationText">
+              Des sites synchronisés nécessitent votre autorisation locale.
+            </p>
+          </div>
+          <button id="activateAllButton" class="button button-primary" type="button">
+            Autoriser les sites
+          </button>
+        </section>
+
+        <section id="sitesSection" class="panel sites-panel" aria-labelledby="sitesTitle">
+          <div class="panel-heading">
+            <div>
+              <p class="step">Protection</p>
+              <h2 id="sitesTitle">Sites protégés <span id="siteCount">0</span></h2>
+              <p class="panel-subtitle">
+                Les icônes proviennent directement des sites actifs.
+              </p>
+            </div>
+          </div>
+
+          <div id="loadingState" class="empty-state">
+            <span class="loader" aria-hidden="true"></span>
+            <p>Chargement des réglages…</p>
+          </div>
+          <div id="emptyState" class="empty-state" hidden>
+            <div class="empty-icon" aria-hidden="true">+</div>
+            <strong>Aucun site protégé</strong>
+            <p>Ajoutez votre premier site pour commencer.</p>
+          </div>
+          <div id="noResultsState" class="empty-state" hidden>
+            <div class="empty-icon" aria-hidden="true">⌕</div>
+            <strong>Aucun résultat</strong>
+            <p>Aucun site ne correspond à cette recherche.</p>
+          </div>
+          <div id="siteTableWrap" class="site-table-wrap" hidden>
+            <table class="site-table">
+              <caption class="sr-only">Liste des sites protégés</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Site</th>
+                  <th scope="col">Portée</th>
+                  <th scope="col">Type de code</th>
+                  <th scope="col">Statut</th>
+                  <th scope="col" class="actions-column">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="siteList" aria-live="polite"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="diagnosticsSection" class="panel diagnostics-panel" aria-labelledby="diagnosticsTitle">
+          <div class="diagnostics-heading">
+            <div>
+              <p class="step">Assistance</p>
+              <h2 id="diagnosticsTitle">Diagnostic technique</h2>
+            </div>
+            <button id="copyDiagnosticsButton" class="button button-secondary" type="button">
+              Copier le diagnostic
+            </button>
+          </div>
+          <p class="diagnostics-intro">
+            Ce journal aide à comprendre pourquoi une navigation n’a pas été
+            verrouillée. Il ne contient jamais les codes saisis ni le chemin
+            complet des pages.
+          </p>
+          <details id="diagnosticsDetails" class="diagnostics-details">
+            <summary>Afficher le journal local</summary>
+            <div class="diagnostics-toolbar">
+              <button id="refreshDiagnosticsButton" class="text-button" type="button">
+                Actualiser
+              </button>
+              <button id="clearDiagnosticsButton" class="text-button diagnostics-clear" type="button">
+                Effacer le journal
+              </button>
+            </div>
+            <pre id="diagnosticsOutput" class="diagnostics-output" tabindex="0">Ouvrez cette section pour charger le diagnostic.</pre>
+          </details>
+        </section>
+
+        <section id="privacySection" class="privacy-note">
+          <div class="privacy-icon" aria-hidden="true">✓</div>
+          <div>
+            <strong>Vos réglages restent sous votre contrôle.</strong>
+            <p>
+              Les domaines et les vérificateurs cryptographiques salés sont enregistrés avec
+              la synchronisation du navigateur lorsqu’elle est activée. Aucun mot de passe en clair
+              ni aucune donnée de page n’est envoyé au développeur.
+            </p>
+            <button id="changeMasterButton" class="text-button privacy-action" type="button">
+              Changer le mot de passe maître
+            </button>
+          </div>
+        </section>
+
+        <p class="limitation">
+          SiteLock est un verrou local de convenance. Il ne remplace pas le
+          verrouillage de la session de l’ordinateur ni une politique de navigateur
+          administrée.
+        </p>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="deleteDialog" aria-labelledby="deleteDialogTitle">
+    <form method="dialog" class="dialog-card">
+      <p class="step">Suppression</p>
+      <h2 id="deleteDialogTitle">Ne plus protéger ce site ?</h2>
+      <p>
+        La règle <strong id="deletePattern"></strong> sera supprimée de vos
+        appareils synchronisés.
+      </p>
+      <div class="dialog-actions">
+        <button class="button button-secondary" value="cancel">Annuler</button>
+        <button class="button button-danger" value="confirm">Supprimer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="changeMasterDialog" aria-labelledby="changeMasterTitle">
+    <form id="changeMasterForm" class="dialog-card" novalidate>
+      <p class="step">Sécurité</p>
+      <h2 id="changeMasterTitle">Changer le mot de passe maître</h2>
+      <div class="field">
+        <label for="currentMasterInput">Mot de passe maître actuel</label>
+        <input id="currentMasterInput" class="dialog-input" type="password" autocomplete="current-password"
+          maxlength="128" required />
+      </div>
+      <div class="field">
+        <label for="newMasterInput">Nouveau mot de passe maître</label>
+        <input id="newMasterInput" class="dialog-input" type="password" autocomplete="new-password" minlength="8"
+          maxlength="128" required />
+      </div>
+      <div class="field">
+        <label for="newMasterConfirmInput">Confirmer le nouveau mot de passe</label>
+        <input id="newMasterConfirmInput" class="dialog-input" type="password" autocomplete="new-password" minlength="8"
+          maxlength="128" required />
+      </div>
+      <p id="changeMasterStatus" class="form-status" role="status" aria-live="polite"></p>
+      <div class="dialog-actions">
+        <button id="cancelMasterChangeButton" class="button button-secondary" type="button">
+          Annuler
+        </button>
+        <button id="saveMasterChangeButton" class="button button-primary" type="submit">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="domain-utils.js"></script>
+  <script src="options.js"></script>
+</body>
+
+</html>

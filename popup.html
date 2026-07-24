@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>SiteLock</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header>
+        <img src="icons/icon-48.png" width="42" height="42" alt="" />
+        <div>
+          <strong>SiteLock</strong>
+          <p id="statusText">Chargement…</p>
+        </div>
+      </header>
+      <button id="lockButton" class="primary-button" type="button">
+        Verrouiller maintenant
+      </button>
+      <button id="settingsButton" class="secondary-button" type="button">
+        Gérer les sites
+      </button>
+      <p id="feedback" role="status" aria-live="polite"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

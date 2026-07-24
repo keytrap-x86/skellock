@@ -1,10 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Skellock",
-  "description": "Ajoute un verrou local par code avant l'accès à Skello sur un ordinateur partagé.",
-  "version": "1.1.0",
-  "minimum_chrome_version": "102",
+  "name": "SiteLock",
+  "description": "Ajoute un verrou local par code avant l'accès aux sites choisis sur un ordinateur partagé.",
+  "version": "2.0.0",
+  "minimum_chrome_version": "105",
   "homepage_url": "https://github.com/keytrap-x86/skellock",
+  "incognito": "not_allowed",
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
@@ -12,25 +13,22 @@
     "128": "icons/icon-128.png"
   },
   "action": {
-    "default_title": "Verrouiller immédiatement Skello"
+    "default_title": "SiteLock",
+    "default_popup": "popup.html"
   },
   "background": {
     "service_worker": "background.js"
   },
   "permissions": [
+    "storage",
     "declarativeNetRequestWithHostAccess"
   ],
-  "host_permissions": [
-    "https://*.skello.io/*"
+  "optional_host_permissions": [
+    "*://*/*"
   ],
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "ruleset_1",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
   "web_accessible_resources": [
     {
@@ -38,11 +36,11 @@
         "lock.html"
       ],
       "matches": [
-        "https://*.skello.io/*"
+        "*://*/*"
       ]
     }
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src https: http:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
   }
 }

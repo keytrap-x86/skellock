@@ -1,33 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="440" height="440" viewBox="0 0 440 440">
   <defs>
     <linearGradient id="tile-background" x1="20" y1="18" x2="420" y2="262" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#f2fbf9"/>
-      <stop offset="1" stop-color="#f8f3e9"/>
-    </linearGradient>
-    <linearGradient id="icon-background" x1="58" y1="76" x2="174" y2="202" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#21304f"/>
-      <stop offset="1" stop-color="#11182a"/>
+      <stop stop-color="#eef7ff"/>
+      <stop offset="1" stop-color="#f4f1ff"/>
     </linearGradient>
     <linearGradient id="lock-body" x1="82" y1="106" x2="151" y2="180" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#65d7c4"/>
-      <stop offset="1" stop-color="#36aa98"/>
+      <stop stop-color="#3527ed"/>
+      <stop offset="1" stop-color="#287cff"/>
     </linearGradient>
+    <linearGradient id="icon-tile" x1="66" y1="70" x2="170" y2="198" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset=".58" stop-color="#fbfcff"/>
+      <stop offset="1" stop-color="#edf1ff"/>
+    </linearGradient>
+    <filter id="icon-shadow" x="32" y="50" width="170" height="178" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#171a3d" flood-opacity=".14"/>
+    </filter>
   </defs>
 
   <g transform="translate(0 80)">
     <rect width="440" height="280" rx="20" fill="url(#tile-background)"/>
-    <circle cx="35" cy="32" r="54" fill="#65d7c4" opacity=".12"/>
-    <circle cx="414" cy="260" r="74" fill="#f6c453" opacity=".14"/>
+    <circle cx="35" cy="32" r="54" fill="#55b2ff" opacity=".16"/>
+    <circle cx="414" cy="260" r="74" fill="#3527ed" opacity=".1"/>
 
-    <rect x="50" y="68" width="132" height="132" rx="32" fill="url(#icon-background)"/>
-    <path d="M90 120v-12c0-16 11-29 26-29s26 13 26 29v12" fill="none" stroke="#f6c453" stroke-width="12" stroke-linecap="round"/>
+    <rect x="50" y="68" width="132" height="132" rx="32" fill="url(#icon-tile)" stroke="#d7deff" stroke-width="2" filter="url(#icon-shadow)"/>
+    <rect x="53" y="71" width="126" height="126" rx="29" fill="none" stroke="#ffffff" stroke-width="2" opacity=".9"/>
+    <path d="M90 120v-12c0-16 11-29 26-29s26 13 26 29v12" fill="none" stroke="#55b2ff" stroke-width="12" stroke-linecap="round"/>
     <rect x="77" y="114" width="78" height="66" rx="18" fill="url(#lock-body)"/>
-    <circle cx="116" cy="143" r="9" fill="#172036"/>
-    <rect x="112" y="148" width="8" height="16" rx="4" fill="#172036"/>
+    <circle cx="116" cy="143" r="9" fill="#ffffff"/>
+    <rect x="112" y="148" width="8" height="16" rx="4" fill="#ffffff"/>
 
-    <text x="214" y="103" fill="#217f72" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="2.4">SKELLOCK</text>
+    <text x="214" y="103" fill="#3527ed" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="2.4">SITELOCK</text>
     <text x="214" y="143" fill="#172036" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-1">Accès protégé</text>
-    <text x="214" y="173" fill="#556078" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500">Un verrou local avant Skello</text>
-    <text x="214" y="205" fill="#69748a" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600">LOCAL  ·  CIBLÉ  ·  SANS SUIVI</text>
+    <text x="214" y="173" fill="#556078" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="500">Protégez les sites de votre choix</text>
+    <text x="214" y="205" fill="#69748a" font-family="Inter, Arial, sans-serif" font-size="10.5" font-weight="600">LOCAL  ·  CIBLÉ  ·  SANS TÉLÉMÉTRIE</text>
   </g>
 </svg>

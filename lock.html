@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
-    <title>Accès protégé — Skellock</title>
+    <title>Accès protégé — SiteLock</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,41 +17,38 @@
           height="48"
           alt=""
         />
-        <p class="eyebrow">Skellock</p>
+        <p class="eyebrow">SiteLock</p>
         <h1 id="page-title">Accès protégé</h1>
-        <p class="intro">
-          Saisissez le code d’accès pour continuer vers Skello.
+        <p class="intro" id="introText">
+          Préparation de l’accès sécurisé…
         </p>
 
-        <form id="unlockForm" novalidate>
+        <form id="unlockForm" novalidate aria-busy="true">
           <label for="passwordInput">Code d’accès</label>
           <input
             id="passwordInput"
             name="accessCode"
             type="password"
-            inputmode="numeric"
             autocomplete="off"
-            pattern="[0-9]{4}"
-            minlength="4"
-            maxlength="4"
+            maxlength="128"
             required
             autofocus
+            disabled
             aria-describedby="formStatus accessNote"
           />
           <p id="formStatus" class="form-status" role="status" aria-live="polite">
           </p>
-          <button id="submitButton" type="submit">Continuer</button>
+          <button id="submitButton" type="submit" disabled>Continuer</button>
         </form>
 
         <p id="accessNote" class="access-note">
-          L’accès est autorisé uniquement dans cet onglet, jusqu’à sa
-          fermeture. Cliquez sur l’icône Skellock pour reverrouiller
-          immédiatement.
+          L’accès reste autorisé dans cet onglet tant que vous restez sur ce
+          site. Il est révoqué lorsque vous quittez le site ou fermez l’onglet.
         </p>
       </section>
 
       <p class="disclaimer">
-        Extension indépendante, non affiliée à Skello.
+        SiteLock fonctionne localement sur cet appareil.
       </p>
     </main>
     <script src="script.js"></script>
